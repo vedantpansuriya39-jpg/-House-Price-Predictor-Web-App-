@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor | AI Real Estate</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-home"></i>
+                <span>PricePredict Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#predictor">Predict</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>AI-Powered House Price Prediction</h1>
+                <p>Get accurate property price estimates using advanced machine learning algorithms</p>
+                <button class="cta-button" onclick="scrollToPredictor()">
+                    Predict Your Home Value <i class="fas fa-arrow-down"></i>
+                </button>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-chart-line"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prediction Form Section -->
+    <section id="predictor" class="predictor-section">
+        <div class="container">
+            <h2>House Price Prediction Calculator</h2>
+            <p class="section-subtitle">Enter your property details to get an instant price estimate</p>
+            
+            <div class="prediction-container">
+                <div class="form-container">
+                    <form id="predictionForm" class="prediction-form">
+                        <div class="form-grid">
+                            <!-- Property Details -->
+                            <div class="form-group">
+                                <label for="property_size_sqft">
+                                    <i class="fas fa-vector-square"></i>
+                                    Property Size (sqft)
+                                </label>
+                                <input type="number" id="property_size_sqft" name="property_size_sqft" 
+                                       min="500" max="10000" step="50" required>
+                                <span class="input-hint">Typical: 1,000 - 3,000 sqft</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lot_size_sqft">
+                                    <i class="fas fa-expand"></i>
+                                    Lot Size (sqft)
+                                </label>
+                                <input type="number" id="lot_size_sqft" name="lot_size_sqft" 
+                                       min="1000" max="50000" step="100" required>
+                                <span class="input-hint">Typical: 5,000 - 15,000 sqft</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bedrooms">
+                                    <i class="fas fa-bed"></i>
+                                    Bedrooms
+                                </label>
+                                <select id="bedrooms" name="bedrooms" required>
+                                    <option value="">Select bedrooms</option>
+                                    <option value="1">1 Bedroom</option>
+                                    <option value="2">2 Bedrooms</option>
+                                    <option value="3">3 Bedrooms</option>
+                                    <option value="4">4 Bedrooms</option>
+                                    <option value="5">5+ Bedrooms</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bathrooms">
+                                    <i class="fas fa-bath"></i>
+                                    Bathrooms
+                                </label>
+                                <select id="bathrooms" name="bathrooms" required>
+                                    <option value="">Select bathrooms</option>
+                                    <option value="1">1 Bathroom</option>
+                                    <option value="2">2 Bathrooms</option>
+                                    <option value="3">3 Bathrooms</option>
+                                    <option value="4">4+ Bathrooms</option>
+                                </select>
+                            </div>
+
+                            <!-- Location & Features -->
+                            <div class="form-group">
+                                <label for="year_built">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    Year Built
+                                </label>
+                                <input type="number" id="year_built" name="year_built" 
+                                       min="1900" max="2024" step="1" required>
+                                <span class="input-hint">Built year: 1900 - 2024</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="garage_size">
+                                    <i class="fas fa-car"></i>
+                                    Garage Size
+                                </label>
+                                <select id="garage_size" name="garage_size" required>
+                                    <option value="">Select garage size</option>
+                                    <option value="0">No Garage</option>
+                                    <option value="1">1 Car</option>
+                                    <option value="2">2 Cars</option>
+                                    <option value="3">3+ Cars</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="distance_to_city_center">
+                                    <i class="fas fa-road"></i>
+                                    Distance to City (miles)
+                                </label>
+                                <input type="number" id="distance_to_city_center" name="distance_to_city_center" 
+                                       min="0" max="50" step="0.5" required>
+                                <span class="input-hint">Miles from city center</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="school_rating">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    School Rating (1-10)
+                                </label>
+                                <input type="number" id="school_rating" name="school_rating" 
+                                       min="1" max="10" step="0.1" required>
+                                <span class="input-hint">School quality score</span>
+                            </div>
+
+                            <!-- Additional Features -->
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="has_pool" name="has_pool">
+                                    <i class="fas fa-swimming-pool"></i>
+                                    Has Swimming Pool
+                                </label>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="has_basement" name="has_basement">
+                                    <i class="fas fa-layer-group"></i>
+                                    Has Basement
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="condition">
+                                    <i class="fas fa-home"></i>
+                                    Property Condition
+                                </label>
+                                <select id="condition" name="condition" required>
+                                    <option value="">Select condition</option>
+                                    <option value="1">Poor (1)</option>
+                                    <option value="2">Fair (2)</option>
+                                    <option value="3">Good (3)</option>
+                                    <option value="4">Very Good (4)</option>
+                                    <option value="5">Excellent (5)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="crime_rate">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Crime Rate Index
+                                </label>
+                                <input type="number" id="crime_rate" name="crime_rate" 
+                                       min="0" max="10" step="0.1" required>
+                                <span class="input-hint">Lower is safer (0-10 scale)</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="predict-button">
+                            <i class="fas fa-calculator"></i>
+                            Predict Price
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Results Display -->
+                <div class="results-container">
+                    <div class="results-card">
+                        <div class="results-header">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h3>Predicted Price</h3>
+                        </div>
+                        <div class="results-content">
+                            <div class="price-display" id="priceDisplay">
+                                $---,---
+                            </div>
+                            <div class="confidence-meter">
+                                <div class="confidence-label">
+                                    <span>Prediction Confidence</span>
+                                    <span id="confidenceValue">--%</span>
+                                </div>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" id="confidenceFill"></div>
+                                </div>
+                            </div>
+                            <div class="price-breakdown" id="priceBreakdown">
+                                <!-- Breakdown will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-highlight">
+                        <h4>Key Value Drivers</h4>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Property Size</li>
+                            <li><i class="fas fa-check"></i> Location & School Quality</li>
+                            <li><i class="fas fa-check"></i> Number of Bedrooms/Bathrooms</li>
+                            <li><i class="fas fa-check"></i> Recent Construction Year</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2>How Our AI Predictor Works</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Advanced linear regression models trained on 20,000+ property records</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Real Data</h3>
+                    <p>Analyzes multiple factors including location, size, amenities and market trends</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Instant Results</h3>
+                    <p>Get accurate price estimates in seconds with our optimized algorithms</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 PricePredict Pro. AI-powered real estate valuation.</p>
+        </div>
+    </footer>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Analyzing property details...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
